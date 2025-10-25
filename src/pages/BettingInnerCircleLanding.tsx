@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function BettingInnerCircleLanding() {
   // ————————————————
   // Quick config (edit these tokens to match your brand)
