@@ -170,10 +170,12 @@ export default function BettingInnerCircleLanding() {
       <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/30 border-b" style={{ borderColor: s.border }}>
         <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="#top" className="flex items-center gap-2 shrink-0" aria-label={brand.name}>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: s.gold }}>
-              <Icon name="spark" className="w-5 h-5" />
-            </span>
+          <a href="#top" className="flex items-center gap-3 shrink-0" aria-label={brand.name}>
+            <img 
+              src="/images/betting_inner_circle_logo-removebg-preview.png" 
+              alt={brand.name}
+              className="h-10 w-auto"
+            />
             <span className="hidden sm:inline font-bold tracking-tight text-base" style={{ color: s.ink }}>{brand.name}</span>
           </a>
 
