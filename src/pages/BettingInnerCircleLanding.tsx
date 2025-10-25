@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 export default function BettingInnerCircleLanding() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   // ————————————————
   // Quick config (edit these tokens to match your brand)
   // ————————————————
@@ -163,25 +167,63 @@ export default function BettingInnerCircleLanding() {
   return (
     <main className="min-h-screen" style={{ background: `radial-gradient(1200px 800px at 80% -10%, rgba(56,189,248,.08), transparent 70%), radial-gradient(900px 600px at -10% 20%, rgba(227,179,65,.10), transparent 60%), ${s.bg}` }}>
       {/* App Bar */}
-      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-black/30 border-b" style={{ borderColor: s.border }}>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 group" aria-label={brand.name}>
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-white/5 ring-1 ring-white/10">
-              <Icon name="spark" className="w-4 h-4" />
+      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/30 border-b" style={{ borderColor: s.border }}>
+        <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
+          {/* Logo */}
+          <a href="#top" className="flex items-center gap-2 shrink-0" aria-label={brand.name}>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: s.gold }}>
+              <Icon name="spark" className="w-5 h-5" />
             </span>
-            <span className="font-semibold tracking-tight" style={{ color: s.ink }}>{brand.name}</span>
+            <span className="hidden sm:inline font-bold tracking-tight text-base" style={{ color: s.ink }}>{brand.name}</span>
           </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm" style={{ color: s.inkDim }}>
-            <a href="#value" className="hover:opacity-80">How it Works</a>
-            <a href="#kpis" className="hover:opacity-80">Performance</a>
-            <a href="#pricing" className="hover:opacity-80">Pricing</a>
-            <a href="#faq" className="hover:opacity-80">FAQ</a>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6 text-sm" style={{ color: s.inkDim }}>
+            <a href="#value" className="hover:opacity-80 transition-opacity">How it Works</a>
+            <a href="#kpis" className="hover:opacity-80 transition-opacity">Performance</a>
+            <a href="#pricing" className="hover:opacity-80 transition-opacity">Pricing</a>
+            <a href="#faq" className="hover:opacity-80 transition-opacity">FAQ</a>
           </nav>
-          <div className="flex items-center gap-3">
-            <a href="#login" className="px-3 py-2 rounded-lg text-sm font-medium ring-1 hover:bg-white/5" style={{ color: s.ink, borderColor: s.border }}>Log in</a>
-            <a href="#join" className="px-4 py-2 rounded-full text-sm font-semibold shadow transition-transform hover:-translate-y-0.5" style={{ background: s.gold, color: "#0A0A0A" }}>{brand.hero.cta}</a>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <a href="#login" className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.ink }}>Log in</a>
+            <a href="#pricing" className="px-5 py-2.5 rounded-full text-sm font-semibold shadow transition-transform hover:-translate-y-0.5" style={{ background: s.gold, color: "#0A0A0A" }}>Join Now</a>
+          </div>
+
+          {/* Mobile: CTA + Hamburger */}
+          <div className="flex md:hidden items-center gap-2">
+            <a href="#pricing" className="px-4 py-2 rounded-full text-sm font-semibold" style={{ background: s.gold, color: "#0A0A0A" }}>Join</a>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg hover:bg-white/5 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke={s.ink} strokeWidth={2} viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t" style={{ borderColor: s.border, background: s.surface }}>
+            <nav className="px-4 py-4 space-y-1">
+              <a href="#value" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.ink }}>How it Works</a>
+              <a href="#kpis" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.ink }}>Performance</a>
+              <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.ink }}>Pricing</a>
+              <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.ink }}>FAQ</a>
+              <div className="pt-2 border-t mt-2" style={{ borderColor: s.border }}>
+                <a href="#login" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-lg text-sm font-medium hover:bg-white/5 transition-colors" style={{ color: s.inkDim }}>Log in</a>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero */}
