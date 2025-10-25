@@ -1,0 +1,16 @@
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import './style.css'
+import BettingInnerCircleLanding from './pages/BettingInnerCircleLanding'
+
+const container = document.getElementById('app')
+if (container) {
+  const root = createRoot(container)
+  root.render(
+    <React.StrictMode>
+      <BettingInnerCircleLanding />
+    </React.StrictMode>
+  )
+}
+
+
